@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Book</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <h1>Add a New Book</h1>
+
+  <form action="/add" method="post" class="book-form">
+
+    <div>
+      <label>Title</label><br>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        placeholder="Book title"
+        required
+      />
+    </div>
+
+    <br>
+    
+    <div>
+      <label>Rating</label><br>
+      <input
+        type="text"
+        id="rating"
+        name="rating"
+        placeholder="Book rating"
+        required
+      />
+    </div>
+
+    <br>
+
+    <div>
+      <label for="description">Description</label><br>
+      <textarea
+        id="description"
+        name="description"
+        placeholder="Short description"
+        rows="4"
+      ></textarea>
+    </div>
+    
+   <div>
+     
+   </div>
+
+    <br>
+
+    <button type="submit" class="add">Add Book</button>
+    <a href="/" class="cancel">Cancel</a>
+
+  </form>
+
+</body>
+</html>

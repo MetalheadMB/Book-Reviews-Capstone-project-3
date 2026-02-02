@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Tracker</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+<div class="box" id="heading">
+    <h1>BOOKS</h1>
+</div>
+
+<form action="/sort" method="post" >
+  <button class="sort" type="submit">Sort By Rating</button>
+</form>
+
+   <div class = "box">
+   <% for(let book of books){%>
+      <div class = "book">
+      
+      <h3 id ="title<%=book.bookisbn%>">
+      <%=book.booktitle%>
+      </h3>
+
+      <h4 id="rating<%=book.bookrating%>">Rating-<%=book.bookrating%>/10</h4>
+      
+      <p id="descp<%=book.bookisbn%>">
+          <%= book. bookdescp %>
+      </p>
+
+      <img
+      src="<%= book.coverUrl %>"
+      alt="Cover of <%= book.booktitle %>"
+      loading="lazy"
+      onerror="this.src='/images/no-cover.png'"
+      />
+
+      <form action="/delete" method="post">
+      <input type="hidden" name="isbn" value="<%=book.bookisbn%>">
+      <button class="delete" type="submit">Delete</button>
+      </form>
+
+      <form action="/edit" method="post">
+      <input type="hidden" name="bookisbn" value="<%=book.bookisbn%>">
+      <input id="input<%=book.bookisbn%>" type="text" name="updateddescp" value="<%=book.bookdescp%>" autocomplete="off" hidden="true" />
+      <button id="done<%=book.bookisbn%>" class="edit" type="submit" hidden>Update</button>
+      </form>
+      
+      <button id="edit<%=book.bookisbn%>" class="edit" onclick="handler('<%=book.bookisbn%>')">edit</button>
+      </div>
+   <% } %>
+      
+     <form class="book" action="/add" method="get">
+          <button class="add" type="submit">Add Book</button>
+     </form>
+    
+   </div>
+
+    <script>
+    function handler(id) {
+      document.getElementById("title" + id).setAttribute("hidden", true)
+      document.getElementById("descp" + id).setAttribute("hidden", true)
+      document.getElementById("edit" + id).setAttribute("hidden", true)
+      document.getElementById("done" + id).removeAttribute("hidden")
+      document.getElementById("input" + id).removeAttribute("hidden")
+    }
+   </script>
+
+</body>
+</html>
